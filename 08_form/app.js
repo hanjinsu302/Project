@@ -18,12 +18,22 @@ app.get("/", function (req, res) {
 app.get("/getForm", function (req, res) {
   //console.log(req);
   console.log(req.query); //사용자가 브라우저에서 입력한 값
-  res.send("get요청성공");
+  //res.send("get요청성공");
+  res.render("result", {
+    title: "get 요청 폼 결과 확인하기",
+    id: req.query.id, // apple
+    pw: req.query.pw, // 1234
+  });
 });
 
 app.post("/postForm", function (req, res) {
   console.log(req.body);
-  res.send("post요청 성공");
+  //res.send("post요청 성공");
+  res.render("result", {
+    title: "post 요청 폼 결과 확인하기",
+    id: req.body.id,
+    pw: req.body.pw,
+  });
 });
 
 app.listen(PORT, function () {
