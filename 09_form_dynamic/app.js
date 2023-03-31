@@ -8,7 +8,7 @@ app.use(express.urlencoded({ extended: true })); //post 요청으로 들어오�
 app.use(express.json()); //json 형태로 데이터를 주고 받음
 
 app.get("/", function (req, res) {
-  res.render("test");
+  res.render("dynamic");
 });
 
 // 1-1. /ajax get 요청
@@ -30,6 +30,18 @@ app.get("/axios", function (req, res) {
 
 // 2-2 /axios post 요청
 app.post("/axios", function (req, res) {
+  console.log(req.body);
+  res.send(req.body);
+});
+
+//3-1 /fetch get요청
+app.get("/fetch", function (req, res) {
+  console.log(req.query);
+  res.send(req.query);
+});
+
+//3-2 /fetch post요청
+app.post("/fetch", function (req, res) {
   console.log(req.body);
   res.send(req.body);
 });
