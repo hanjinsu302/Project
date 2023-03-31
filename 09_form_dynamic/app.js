@@ -8,7 +8,7 @@ app.use(express.urlencoded({ extended: true })); //post 요청으로 들어오�
 app.use(express.json()); //json 형태로 데이터를 주고 받음
 
 app.get("/", function (req, res) {
-  res.render("dynamic");
+  res.render("test");
 });
 
 // 1-1. /ajax get 요청
