@@ -32,5 +32,25 @@
       <input type="text" name="title2" /><br /><br />
       <button type="submit">업로드</button>
     </form>
+
+    <h2>실습하기</h2>
+    <form name="login" action="/result">
+      <input type="text" id="userId" name="userId" placeholder="아이디" />
+      <br />
+
+      <input type="password" id="userPw" name="userPw" placeholder="비번" />
+      <br />
+
+      <input type="text" name="username" id="username" placeholder="이름" />
+      <br />
+
+      <input type="number" name="old" id="old" placeholder="나이" />
+      <br />
+      <form action="/upload/array" method="POST" enctype="multipart/form-data">
+        <input type="file" name="userfiles" multiple /><br />
+        <input type="text" name="title" /><br /><br />
+        <button type="submit">업로드</button>
+      </form>
+    </form>
   </body>
 </html>
