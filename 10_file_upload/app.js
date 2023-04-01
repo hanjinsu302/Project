@@ -46,6 +46,24 @@ app.post("/upload", uploadDetail.single("userfile"), function (req, res) {
   res.send("Upload!!");
 });
 
+// array(): 여러 파일을 한 번에 업로드 할 때 사용
+app.post("/upload/array", uploadDetail.array("userfiles"), function (req, res) {
+  console.log(req.files); // 업로드한 파일 정보
+  console.log(req.body); // 폼에 입력한 정보
+  res.send("Upload Multiple Each!!");
+});
+
+// fields(): 여러 파일을 각각 input에 업로드 할 때
+app.post(
+  "/upload/fields",
+  uploadDetail.fields([{ name: "userfile1" }, { name: "userfile2" }]),
+  function (req, res) {
+    console.log(req.files); // 업로드한 파일 정보
+    console.log(req.body); // 폼에 입력한 정보
+    res.send("Upload Multiple Each!!");
+  }
+);
+
 app.listen(PORT, function () {
   console.log(`http://localhost:${PORT}`);
 });

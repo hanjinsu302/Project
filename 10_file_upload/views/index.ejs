@@ -10,9 +10,26 @@
     <h1>파일 업로드</h1>
 
     <!-- multer는 multerpart가 아닌 폼에서는 동작하지 않음!!-->
+    <h2>하나의 input에 하나의 파일 업로드</h2>
     <form action="/upload" method="POST" enctype="multipart/form-data">
       <input type="file" name="userfile" /><br />
       <input type="text" name="title" /><br /><br />
+      <button type="submit">업로드</button>
+    </form>
+
+    <h2>하나의 input에 여러개의 파일 업로드</h2>
+    <form action="/upload/array" method="POST" enctype="multipart/form-data">
+      <input type="file" name="userfiles" multiple /><br />
+      <input type="text" name="title" /><br /><br />
+      <button type="submit">업로드</button>
+    </form>
+
+    <h2>Multi file upload ver.2</h2>
+    <form action="/upload/fields" method="POST" enctype="multipart/form-data">
+      <input type="file" name="userfile1" /><br />
+      <input type="text" name="title1" /><br /><br />
+      <input type="file" name="userfile2" /><br />
+      <input type="text" name="title2" /><br /><br />
       <button type="submit">업로드</button>
     </form>
   </body>
