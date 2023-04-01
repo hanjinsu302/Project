@@ -8,6 +8,24 @@ const path = require("path"); // path 불러오기(내장모듈)=> 파일, 폴�
 const upload = multer({
   dest: "uploads/",
 });
+const uploadDetail = multer({
+  storage: multer.diskStorage({
+    destination(req, file, done) {
+      //destination: 경로 설정
+      //done: callback함수
+      done(null, "uploads/");
+    },
+    filename(req, file, done) {
+      const ext = path.extname(file.originalname); //file.originalname에서 "확장자" 추출
+      // path.basename(file.orginalname, ext) => apple (확장자 제거한 파일 이름만!!!)
+      // Date.now() =>현재시간
+      done(null, path.basename(file.originalname, ext) + Date.now() + ext);
+      // [파일명 + 현재시간.확장자] 형식으로 파일 업로드
+    },
+  }),
+  limits: { fileSize: 5 * 1024 * 1024 }, // 5MB로 파일 크기 제한
+  // 5
+});
 
 app.set("view engine", "ejs");
 app.use("/views", express.static(__dirname + "/views"));
@@ -22,7 +40,7 @@ app.get("/", (req, res) => {
 
 //single(): 하나의 파일을 업로드 할때 사용
 //single()의 매개변수: input의 name과 일치 시키기!
-app.post("/upload", upload.single("userfile"), function (req, res) {
+app.post("/upload", uploadDetail.single("userfile"), function (req, res) {
   console.log(req.file); // 업로드한 파일 정보
   console.log(req.body); // 폼에 입력한 정보
   res.send("Upload!!");
