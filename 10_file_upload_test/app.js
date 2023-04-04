@@ -19,8 +19,10 @@ const uploadDetail = multer({
       const ext = path.extname(file.originalname); //file.originalname에서 "확장자" 추출
       // path.basename(file.orginalname, ext) => apple (확장자 제거한 파일 이름만!!!)
       // Date.now() =>현재시간
-      done(null, path.basename(file.originalname, ext) + Date.now() + ext);
+      //done(null, path.basename(file.originalname, ext) + Date.now() + ext);
       // [파일명 + 현재시간.확장자] 형식으로 파일 업로드
+
+      done(null, req.body.userid + Date.now() + ext);
     },
   }),
   limits: { fileSize: 5 * 1024 * 1024 }, // 5MB로 파일 크기 제한
