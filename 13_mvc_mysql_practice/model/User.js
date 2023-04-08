@@ -1,20 +1,23 @@
-const mysql = require('mysql');
+const mysql = require("mysql");
 
 const conn = mysql.createConnection({
-  host: 'localhost',
-  user: 'user',
-  password: '1234',
-  database: 'kdt',
+  //연결 객체 만들기
+  host: "localhost",
+  user: "user",
+  password: "1234",
+  database: "condingon",
 });
 
 exports.post_signup = (data, cb) => {
+  //dta: req.body
+  //cd: sql문 실행 후, 할 일 함수
   const sql = `INSERT INTO user (userid, name, pw) VALUES ('${data.userid}','${data.name}','${data.pw}')`;
   conn.query(sql, (err, rows) => {
     if (err) {
       throw err;
     }
 
-    console.log('post_singup', rows);
+    console.log("post_singup", rows);
     // OkPacket {
     //     fieldCount: 0,
     //     affectedRows: 1,
@@ -49,7 +52,7 @@ exports.post_profile = (userid, cb) => {
       throw err;
     }
 
-    console.log('Model User: ', rows); // [ {} ]
+    console.log("Model User: ", rows); // [ {} ]
     cb(rows);
   });
 };
@@ -61,7 +64,7 @@ exports.edit_profile = (data, cb) => {
       throw err;
     }
 
-    console.log('Model edit profile', rows);
+    console.log("Model edit profile", rows);
     // OkPacket {
     //   fieldCount: 0,
     //   affectedRows: 1,
