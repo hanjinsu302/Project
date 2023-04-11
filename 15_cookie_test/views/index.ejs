@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"></script>
+    <script
+      src="https://code.jquery.com/jquery-3.6.0.min.js"
+      integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+      crossorigin="anonymous"
+    ></script>
+    <script>
+      function close_btn() {
+        let modal_checkbox = document.querySelector("input");
+
+        if (modal_checkbox.checked) {
+          document.cookie = "hide";
+        }
+      }
+    </script>
+  </head>
+  <body>
+    <h2>쿠키 실습</h2>
+    <div
+      class="modal fade"
+      id="exampleModal"
+      tabindex="-1"
+      aria-labelledby="exampleModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">쿠키</h5>
+          </div>
+          <div class="modal-body">
+            <h4>이것은 쿠키다</h4>
+            <p>이것은 광고다</p>
+          </div>
+          <div class="modal-footer">
+            <div style="margin-right: 280">
+              <input type="checkbox" /> 오늘 그만보기
+            </div>
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-bs-dismiss="modal"
+              onclick="close_btn()"
+            >
+              Close
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+  <script>
+    let flag = true;
+
+    let cookieArr = document.cookie.split(";");
+
+    for (let i in cookieArr) {
+      let cookie = cookieArr[i].split("=");
+
+      if (cookie[0] == " today" && cookie[1] == "no") {
+        flag = false;
+
+        break;
+      }
+    }
+
+    if (flag == true) {
+      $(document).ready(function () {
+        $("#exampleModal").modal("show");
+      });
+    }
+  </script>
+</html>
