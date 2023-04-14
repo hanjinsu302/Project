@@ -1,0 +1,51 @@
+body {
+  background-color: aliceblue;
+}
+
+/* [실습2] 채팅창 UI 만들기 */
+.chat-list {
+  background-color: skyblue;
+  width: 50%;
+  height: 500px;
+  padding: 10px;
+  overflow-y: auto;
+}
+
+.chat-list div {
+  margin-top: 3px;
+}
+
+.chat-list div div {
+  display: inline-block;
+  padding: 3px;
+}
+
+.my-chat {
+  text-align: right;
+}
+
+.my-chat div {
+  background-color: yellow;
+  border-radius: 10px;
+}
+
+.other-chat div {
+  background-color: white;
+  border-radius: 10px;
+}
+/*비밀 채팅*/
+.secret-chat div {
+  background-color: rgb(145, 72, 72);
+  border-radius: 10px;
+}
+
+/* [실습3]*/
+.notice {
+  text-align: center;
+  color: navy;
+  font-size: 12px;
+}
+
+.d-none {
+  display: none;
+}
