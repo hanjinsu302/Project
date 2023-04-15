@@ -9,6 +9,7 @@
       integrity="sha384-c79GN5VsunZvi+Q/WObgk2in0CbZsHnjEqvFxC5DxHn9lTfNce2WW6h2pH6u/kF+"
       crossorigin="anonymous"
     ></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
 
     <link rel="stylesheet" href="/static/index.css" />
     <title>My chat</title>
@@ -18,8 +19,14 @@
     <h1>채팅</h1>
     <!--[실습 3-2] 채팅장 입장 안내 문구 socket.id-> nickname -->
     <div class="entry-box">
-      <input type="text" id="nickname" placeholder="Nickname" autofocus />
-      <button type="button" onclick="entry();">입장</button>
+      <input
+        type="text"
+        id="nickname"
+        placeholder="Nickname"
+        autofocus
+        onkeypress="if(window.event.keyCode==13){entry()}"
+      />
+      <button type="button" onclick="entry()">입장</button>
     </div>
 
     <div class="chat-box d-none">
@@ -34,7 +41,11 @@
       </div>
       <select id="nick-list"></select
       >에게
-      <input type="text" id="message" />
+      <input
+        type="text"
+        id="message"
+        onkeypress="if(window.event.keyCode==13){send()}"
+      />
       <button type="button" onclick="send()">전송</button>
     </div>
 

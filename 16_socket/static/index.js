@@ -71,7 +71,20 @@ socket.on("entrySuccess", (nick) => {
 // [실습3-2]
 //닉네임 중복 -> alert 띄우기
 socket.on("error", (msg) => {
-  alert(msg);
+  Swal.fire({
+    title: msg,
+    width: 600,
+    padding: "3em",
+    color: "#716add",
+    background: "#fff url(/static/image/d_3cfUd018svcficivrhebgfc_fn8keb.jpeg)",
+    backdrop: `
+      rgba(0,0,123,0.4)
+      url("/static/image/98246874-2e18a800-1f73-11eb-8583-f2c1f7d293f0.gif")
+      left top
+      no-repeat
+      
+    `,
+  });
 });
 
 //[실습3-2]

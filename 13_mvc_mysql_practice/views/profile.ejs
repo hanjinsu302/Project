@@ -8,6 +8,7 @@
 
     <!-- axios -->
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
   </head>
   <body>
     <h1>회원 정보</h1>
@@ -89,7 +90,13 @@
           .then((data) => {
             console.log("2delete >> ", data);
             // (1) alert 띄우기
-            alert("회원 탈퇴 성공");
+            Swal.fire({
+              position: "top-end",
+              icon: "success",
+              title: "Your work has been saved",
+              showConfirmButton: false,
+              timer: 1500,
+            });
             // (2) 회원 탈퇴시 profile 페이지에 머무를 이유가 없으므로 /user 경로로 이동
             // document.location.href란?
             // javascript에서 페이지 이동할 수 있는 방법

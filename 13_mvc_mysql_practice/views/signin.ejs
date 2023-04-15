@@ -10,6 +10,7 @@
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
   </head>
   <body>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
     <h1>로그인</h1>
     <!-- 
       [로그인] 버튼을 클릭하면 profile.ejs(회원정보 수정 페이지)에서 
@@ -33,7 +34,7 @@
 
     <script>
       function login() {
-        const form_login = document.forms['form_login'];
+        const form_login = document.forms["form_login"];
 
         if (!form_login.checkValidity()) {
           form_login.reportValidity();
@@ -41,8 +42,8 @@
         }
 
         axios({
-          method: 'POST',
-          url: '/user/signin',
+          method: "POST",
+          url: "/user/signin",
           data: {
             userid: form_login.userid.value,
             pw: form_login.pw.value,
@@ -52,13 +53,19 @@
             return res.data;
           })
           .then((data) => {
-            console.log('post profile >>', data); // true or false
+            console.log("post profile >>", data); // true or false
             if (data) {
               // true
               // (1) alert 띄우기
-              alert('로그인 성공');
+              Swal.fire({
+                position: "top-end",
+                icon: "success",
+                title: "Your work has been saved",
+                showConfirmButton: false,
+                timer: 1500,
+              });
               // (2) form_info 폼 선택
-              const form_info = document.forms['form_info'];
+              const form_info = document.forms["form_info"];
               // (3) form_login의 userid 값을 form_ingo의 userid value에 저장
               form_info.userid.value = form_login.userid.value;
               // (4) form_info 제출
@@ -69,7 +76,13 @@
             } else {
               // false
               // (1) alert 띄우기
-              alert('로그인 실패');
+              Swal.fire({
+                icon: "error",
+                title: "Oops...",
+                text: "Something went wrong!",
+                footer: '<a href="">Why do I have this issue?</a>',
+              });
+
               // (2) form_info 초기화 (제출 안함)
               form_login.reset();
             }

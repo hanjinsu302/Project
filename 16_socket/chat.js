@@ -12,6 +12,7 @@ app.get("/", function (req, res) {
   console.log("client connected");
   res.render("chat");
 });
+let numUsers = 0;
 
 //닉네임을 저장할 객체
 // : 닉네임이 겹치지 않도록 객체({})를 사용함
@@ -22,7 +23,8 @@ const nickObj = {};
 //닉네임 리스트 객체를 업데이트
 //유저가 들어오거나 퇴장할 때 내역 업데이트
 function updateNickList() {
-  io.emit("updateNicks", nickObj);
+  io.emit("updateNicks", nickObj, numUsers);
+
   //서버에 접속한 클라이언트들에게 nickobj에 변경이 일어났음을 알리는 이벤트
 }
 
@@ -30,7 +32,7 @@ function updateNickList() {
 //(x,y) x: event  y: callback함수
 io.on("connection", (socket) => {
   //'connection' event
-  // - 클라이언트가 접속 했을 때 발생하는 이벤트
+  // - 클라이언트가 접속 했을 때 발생하는 이벤트x
   // - 콜백으로 socket 객체를 제공
 
   //⭕❌
@@ -38,6 +40,8 @@ io.on("connection", (socket) => {
   //socket.id: 소켓 고유 아이디 -> socket은 웹 페이지 별로 id 생성!
   // => 크롬에서 탭 두개 띄우면 socket.id 는 각각 생김(2개)
   console.log("⭕ server socket connected>>", socket.id);
+  numUsers++;
+  io.emit("userCount", numUsers);
 
   //[실습1]
   // socket.on("hello", (data) => {
@@ -72,7 +76,10 @@ io.on("connection", (socket) => {
     } else {
       //아이디 통과
       nickObj[socket.id] = nick; // nickObj 객첵에 "소켓_아이디: 닉네임" 추가
-      io.emit("notice", `${nick}님이 입장 하였습니다.`); //입장 메세지 "전체 공지"
+      io.emit(
+        "notice",
+        `${nick}님이 입장 하였습니다.현재 접속자 수: ${numUsers}명`
+      ); //입장 메세지 "전체 공지"
       // 전체 공지 => 서버에 접속한 모든 클라이언트에게 이벤트 전송
       socket.emit("entrySuccess", nick); //입장 성공시
       updateNickList(); //닉네임 리스트 객체 업데이트
@@ -83,10 +90,15 @@ io.on("connection", (socket) => {
   //disconnect event: 클라이언트가 연결을 끊었을 때 발생 (브라우저 탭 닫음)
   socket.on("disconnect", () => {
     console.log("*** ❌ Server Socket Disonnected >>", socket.id);
+    numUsers--; // 접속자 수 1 감소
+    io.emit("userCount", numUsers);
 
     //미션!!
     //1. xx님이 퇴장하셨습니다 출력
-    io.emit("notice", `${nickObj[socket.id]}님이 퇴장 하였습니다.`);
+    io.emit(
+      "notice",
+      `${nickObj[socket.id]}님이 퇴장 하였습니다.현재 접속자 수: ${numUsers}명`
+    );
     //2. nickObj에서 닫은 탭의 socket.id를 삭제
     delete nickObj[socket.id];
     //3. 리스트 업데이트 하기
@@ -108,6 +120,10 @@ io.on("connection", (socket) => {
     //  { nick, dm, msg}
     //만약에 dm메세지가 아니면; 전체 공지
     //  { nick, msg}
+    if (!obj.msg) {
+      socket.emit("error", "메시지를 입력해주세요!");
+      return;
+    }
 
     if (obj.dm !== "all") {
       //dm전송

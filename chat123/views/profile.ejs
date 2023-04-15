@@ -11,25 +11,20 @@
     <link rel="stylesheet" href="/static/index.css" />
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 
-    <link rel="stylesheet" href="/static/index.css" />
-
     <!-- axios -->
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
   </head>
   <body>
-    
-   
     <a href="#main" class="skip-link">Skip to main content</a>
     <header>
       <div class="container">
         <h1>CHAT - CODINGON</h1>
         <h2>재치있는 닉네임으로 자신을 소개해보세요!!</h2>
-
-
-
         <div class="entry-box">
           <input type="text" id="nickname" placeholder="Nickname" autofocus style="background-color: #1b62b9; border-radius: 30px; width: 200px; height: 60px; font-size: 20px; color: white; font-style: italic;"/>
-          <button type="button" onclick="entry();" style="background-color: #e63838; border-radius: 30px; width: 200px; height: 60px;" >
+          <button type="button" onclick="entry();" onkeypress="if(window.event.keyCode==13){entry()}" style="background-color: #e63838; border-radius: 30px; width: 200px; height: 60px;" >
             <h4 style="font-size: 30px;
             position: relative;
             margin-top: 13px;
@@ -53,7 +48,7 @@
           >
          
          
-          <input type="text" id="message" placeholder="전송할 내용을 입력하세요" autofocus style="background-color: #d1d0cb; border-radius: 30px; width: 550px; height: 60px; font-size: 20px; color: white; font-style: italic;"/>
+          <input type="text" id="message" placeholder="전송할 내용을 입력하세요" autofocus onkeypress="if(window.event.keyCode==13){send()}" style="background-color: #d1d0cb; border-radius: 30px; width: 550px; height: 60px; font-size: 20px; color: white; font-style: italic;"/>
           <button type="button" onclick="send();" style="background-color: #a22929; border-radius: 30px; width: 200px; height: 60px;" >
             <h4 style="font-size: 30px;
             position: relative;

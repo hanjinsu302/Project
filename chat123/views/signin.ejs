@@ -6,6 +6,8 @@
 
     <!-- axios -->
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
   </head>
   <body>
     <div class="login-box">
@@ -98,7 +100,15 @@
             } else {
               // false
               // (1) alert 띄우기
-              alert("로그인 실패");
+              Swal.fire({
+                title: "로그인에 실패하였습니다",
+                text: "다시 입력해주세요",
+                imageUrl:
+                  "https://mir-s3-cdn-cf.behance.net/project_modules/max_1200/f28fc546296985.584f306ec4bcb.gif",
+                imageWidth: 400,
+                imageHeight: 300,
+                imageAlt: "Custom image",
+              });
               // (2) form_info 초기화 (제출 안함)
               form_login.reset();
             }

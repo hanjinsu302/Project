@@ -71,7 +71,14 @@ socket.on("entrySuccess", (nick) => {
 // [실습3-2]
 //닉네임 중복 -> alert 띄우기
 socket.on("error", (msg) => {
-  alert(msg);
+  Swal.fire({
+    title: msg,
+    imageUrl:
+      "https://64.media.tumblr.com/e9213f124233ecf031148fa058b9829f/tumblr_obk8bt07AN1r89q2no1_540.gif",
+    imageWidth: 400,
+    imageHeight: 300,
+    imageAlt: "Custom image",
+  });
 });
 
 //[실습3-2]
@@ -136,10 +143,19 @@ socket.on("newMessage", (data) => {
     div.classList.add("other-chat");
   }
 
-  //divChat의 textcontent/innerText 값을 적절히 변경
+  // [실습5]DM기능 추가
+  if (data.dm) {
+    //data.dm -> '(속닥속닥)'
+    div.classList.add("secret-chat");
+    divChat.textContent = data.dm;
+  }
 
-  divChat.textContent = `${data.nick} : ${data.msg}`;
-  // divchat을 div 요소에 추가
+  //divChat의 textcontent/innerText 값을 적절히 변경
+  //ex. nick : msg 형태로 보이게 했음
+  //divChat.textContent = `${data.nick} : ${data.msg}`;//[실습4]
+  divChat.textContent = divChat.textContent + `${data.nick} : ${data.msg}`;
+  // dm; divChat.textCotent = '(속닥속닥); + 누가 : 메세지
+  // not dm; divChat.textcontent =" " + snrk :
 
   div.append(divChat);
   // div를 chatList에 추가
