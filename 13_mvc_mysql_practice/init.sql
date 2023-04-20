@@ -1,5 +1,5 @@
-SHOW databases;
-USE kdt;
+SHOW databases; 
+USE congingon;
 SHOW tables;
 
 -- 기존 테이블 지움 (필요없음)
