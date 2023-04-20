@@ -14,6 +14,7 @@ function SyntheticEvent() {
   return (
     <div>
       <button onClick={syntheticEvent}>합성이벤트 콘솔찍기</button>
+
       <input
         type="text"
         placeholder="아무거나 입력"
