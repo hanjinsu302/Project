@@ -1,25 +1,19 @@
 import { useState } from "react";
-function Test2() {
-  const [message, setMessage] = useState("안녕하세요");
-  const [bool, setBool] = useState(false);
 
-  const onClick = () => {
-    setBool(true);
-  };
-  const onClick1 = () => {
-    setBool(false);
+const Test2 = () => {
+  const [visible, setVisble] = useState(true);
+
+  const toggle = () => {
+    setVisble(!visible);
+    // !true => flase
+    // !flase => true
   };
 
   return (
     <>
-      {bool && (
-        <>
-          <h1>{message}</h1>
-        </>
-      )}
-      <button onClick={onClick}>보여저라</button>
-      <button onClick={onClick1}>사라져라</button>
+      <button onClick={toggle}>{visible ? "사라져라" : "보여라"}</button>
+      <h1>{visible && "안녕하세요"}</h1>
     </>
   );
-}
+};
 export default Test2;
