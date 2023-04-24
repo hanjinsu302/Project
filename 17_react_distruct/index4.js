@@ -77,4 +77,35 @@ const arr2 = [
 const arr3 = arr1.concat(arr2); //배열 합치기
 console.log(arr3);
 
-/////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////
+//reduce(callback)
+//배열의 각 요소에 주어진 리듀스 함수를 실행 시키고 하나의 결과 값을 반환
+const numbers = [1, 7, 3, 9, 5];
+
+//할려는 것 1 + 2 + 3 + 4 + 5
+const sum = numbers.reduce((acc, currentValue) => {
+  return acc + currentValue;
+});
+console.log(sum);
+
+//acc (누적합)
+const sum2 = numbers.reduce((acc, currentValue, idx) => {
+  console.log(`++++++++++${idx}번쨰 index++++++++++`);
+  console.log("acc>>>>", `${acc}`);
+  console.log("currentValue>>>>", `${currentValue}`);
+  return acc + currentValue;
+});
+console.log(sum);
+// ++++++++++1번쨰 index++++++++++
+// acc>>>> 1
+// currentValue>>>> 2
+// ++++++++++2번쨰 index++++++++++
+// acc>>>> 3
+// currentValue>>>> 3
+// ++++++++++3번쨰 index++++++++++
+// acc>>>> 6
+// currentValue>>>> 4
+// ++++++++++4번쨰 index++++++++++
+// acc>>>> 10
+// currentValue>>>> 5
+// 15
