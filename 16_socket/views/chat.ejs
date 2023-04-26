@@ -16,10 +16,11 @@
   </head>
 
   <body>
-    <h1>채팅</h1>
+    <h1 class="entry-title">당신의 개인 법률 상담사 CHAT-FOURMEN</h1>
     <!--[실습 3-2] 채팅장 입장 안내 문구 socket.id-> nickname -->
     <div class="entry-box">
       <input
+        class="nickname"
         type="text"
         id="nickname"
         placeholder="Nickname"
@@ -30,23 +31,18 @@
     </div>
 
     <div class="chat-box d-none">
-      <div id="chat-list" class="chat-list">
-        <!--  임시 대화 데이터 -->
-        <!--<div class="my-chat">
-          <div>user1: msg1</div>
-        </div>
-        <div class="other-chat">
-          <div>user2: msg2</div>
-        </div>-->
+      <div id="chat-list" class="chat-list"></div>
+
+      <div class="send-box">
+        <select id="nick-list" class="send-select"></select>
+        <input
+          class="send-input"
+          type="text"
+          id="message"
+          onkeypress="if(window.event.keyCode==13){send()}"
+        />
+        <button type="button" onclick="send()" class="send-button">전송</button>
       </div>
-      <select id="nick-list"></select
-      >에게
-      <input
-        type="text"
-        id="message"
-        onkeypress="if(window.event.keyCode==13){send()}"
-      />
-      <button type="button" onclick="send()">전송</button>
     </div>
 
     <!-- [실습1] 각 버튼을 누를 때 마다 서버로 메세지 보내기-->

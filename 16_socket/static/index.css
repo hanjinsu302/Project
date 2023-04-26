@@ -1,14 +1,22 @@
+html {
+  width: 100%;
+  height: 100%;
+}
 body {
-  background-color: aliceblue;
+  background-color: rgb(45, 49, 53);
 }
 
 /* [실습2] 채팅창 UI 만들기 */
 .chat-list {
-  background-color: skyblue;
-  width: 50%;
+  background-color: #1b2431;
+  margin: center;
+  margin-left: 120px;
+
+  width: 80%;
   height: 500px;
   padding: 10px;
   overflow-y: auto;
+  border-radius: 10px;
 }
 
 .chat-list div {
@@ -25,7 +33,7 @@ body {
 }
 
 .my-chat div {
-  background-color: yellow;
+  background-color: rgb(21, 111, 230);
   border-radius: 10px;
 }
 
@@ -42,10 +50,124 @@ body {
 /* [실습3]*/
 .notice {
   text-align: center;
-  color: navy;
+  color: rgb(197, 197, 207);
   font-size: 12px;
 }
 
 .d-none {
   display: none;
+}
+.chat-list::before,
+.chat-list::after {
+  position: absolute;
+  content: "";
+  top: -5%;
+  left: -5%;
+  height: 110%;
+  width: 110%;
+  border-radius: 50%;
+  opacity: 0.5;
+  filter: blur(60px);
+}
+
+.chat-list::after {
+  background-color: #4835f0;
+  z-index: -1;
+  animation: backglow2 5s ease infinite;
+}
+
+.chat-list::before {
+  background-color: #f72424;
+  z-index: -2;
+  animation: backglow1 5s ease infinite;
+}
+
+@keyframes backglow1 {
+  0% {
+    transform: translate(10%, 10%) scale(1);
+    opacity: 0.5;
+  }
+
+  25% {
+    transform: translate(-10%, 10%) scale(0.8);
+    opacity: 0.5;
+  }
+
+  50% {
+    transform: translate(-10%, -10%) scale(1.2);
+    opacity: 0.8;
+  }
+
+  75% {
+    transform: translate(10%, -10%) scale(1.1);
+    opacity: 0.2;
+  }
+
+  100% {
+    transform: translate(10%, 10%) scale(1);
+    opacity: 0.5;
+  }
+}
+
+@keyframes backglow2 {
+  0% {
+    transform: translate(-10%, -10%) scale(1);
+    opacity: 0.5;
+  }
+
+  25% {
+    transform: translate(10%, -10%) scale(0.8);
+    opacity: 0.5;
+  }
+
+  50% {
+    transform: translate(10%, 10%) scale(1.2);
+    opacity: 0.8;
+  }
+
+  75% {
+    transform: translate(-10%, 10%) scale(1.1);
+    opacity: 0.2;
+  }
+
+  100% {
+    transform: translate(-10%, -10%) scale(1);
+    opacity: 0.5;
+  }
+}
+
+.entry-box {
+  display: flex;
+  justify-content: center;
+}
+.entry-title {
+  display: flex;
+  justify-content: center;
+  color: #478ced;
+}
+
+.send-box {
+  display: flex;
+  justify-content: center;
+}
+.send-select {
+  width: 10vw;
+  height: 3vw;
+  border-radius: 10px;
+  margin: 5px;
+}
+
+.send-input {
+  width: 50vw;
+  border-radius: 10px;
+  margin: 5px;
+}
+
+.send-button {
+  width: 10vw;
+  border-radius: 10px;
+  height: 3vw;
+  margin: 5px;
+  background-color: rgb(10, 86, 237);
+  color: white;
 }
