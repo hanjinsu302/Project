@@ -23,6 +23,9 @@ const ProductDetailPage = (props) => {
     <main className="ProductDetailPage">
       <button onClick={() => navigate(-1)}>목록보기</button>
       <button onClick={() => navigate("/")}>홈으로 이동하기</button>
+      <button onClick={() => navigate("/student/:name")}>
+        홈으로 이동하기
+      </button>
       <h1>여기는 상품 디테일 페이지!</h1>
       <li>판매번호: {targetProduct.id}</li>
       <li>상품명: {targetProduct.name}</li>

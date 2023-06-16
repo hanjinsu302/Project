@@ -1,16 +1,12 @@
-import Bouseball from "./Bouseball";
-import CssComponent from "./CssComponent";
-import Lava from "./Lava";
+import Main from "./Main";
+import Movie from "./Movie";
 import Prob4 from "./Prob4";
-import SassComponent from "./SassComponent";
 
 function App() {
   return (
     <div className="App">
-      {/* <CssComponent />
-      <SassComponent /> */}
-      {/* <Lava /> */}
-      {/* <Bouseball /> */}
+      {/* <Main />
+      <Movie /> */}
       <Prob4 />
     </div>
   );

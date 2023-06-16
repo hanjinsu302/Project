@@ -19,15 +19,16 @@ $breakpoint-sm: 532px;
 //   }
 // }
 
-// @include media('<#{$breakpoint-md}') {
-//   .Prob4 {
-//     flex-wrap: wrap;
+@include media("<#{$breakpoint-md}") {
+  .Prob4 {
+    display: flex;
+    flex-wrap: wrap;
 
-//     div {
-//       width: 33.3%;
-//     }
-//   }
-// }
+    div {
+      width: 33.3%;
+    }
+  }
+}
 
 // @include media('<#{$breakpoint-sm}') {
 //   .Prob4 {
